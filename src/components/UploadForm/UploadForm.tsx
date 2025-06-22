@@ -15,9 +15,9 @@ import { Button } from "../ui/Button/Button";
 import { reportApi } from "../../api/reportApi";
 import {
   decodeAggregateStream,
-  getDateNowFormat,
   type SaveReportData,
 } from "../../services/report";
+import { getDateNowFormat } from "../../utils/getDateNowFormat";
 import { useReportStore } from "../../api/reportStore";
 import { useReportListStore } from "../../api/reportListStore";
 
@@ -34,7 +34,7 @@ export const UploadForm = () => {
   const [status, setStatus] = useState<UploadStatus>("default");
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { setReport } = useReportStore();
+  const { setReport, resetIsLoaded } = useReportStore();
   const { addItem } = useReportListStore();
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
@@ -52,6 +52,8 @@ export const UploadForm = () => {
       setStatus("uploaded");
       console.log("Файл загружен: ", file?.name);
     } else {
+      setStatus("error");
+      setFile(null);
       console.log("Пожалуйста, загрузите CSV файл");
     }
   };
@@ -80,6 +82,7 @@ export const UploadForm = () => {
 
   const handleRemoveFile = () => {
     setFile(null);
+    resetIsLoaded();
     setStatus("default");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -94,7 +97,6 @@ export const UploadForm = () => {
     try {
       e.preventDefault();
       if (!file) return;
-      console.log("Файл отправлен:", file);
       setStatus("parsing");
       const responseReport = await decodeAggregateStream(
         await reportApi.aggregateReport(file),
@@ -102,8 +104,6 @@ export const UploadForm = () => {
           setReport(data);
         }
       );
-
-      console.log("NEXT", responseReport);
 
       let data: SaveReportData;
 
@@ -125,9 +125,7 @@ export const UploadForm = () => {
         };
       }
       addItem(data);
-      // saveReport(data);
       setStatus("parsed");
-      // handleRemoveFile();
     } catch (e) {
       let data: SaveReportData = {
         id: crypto.randomUUID(),
@@ -152,12 +150,9 @@ export const UploadForm = () => {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={styles.label}
-          style={{
-            textAlign: "center",
-            backgroundColor: isDragOver ? "#D4FAE6" : "#EACDFF",
-            marginBottom: "1rem",
-          }}
+          className={`${styles.dropArea} ${
+            status === "error" && styles.error
+          } ${isDragOver && styles.dragOver}`}
         >
           <ButtonUpload
             isLoading={status === "parsing"}

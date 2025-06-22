@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { HistoryItem } from "../HistoryItem/HistoryItem";
 import { useReportListStore } from "../../api/reportListStore";
-import { dayNumberToDateStringRU } from "../../services/report";
+import { dayNumberToDateStringRU } from "../../utils/dayNumberToDateStringRU";
 import { Modal } from "../ui/Modal/Modal";
 import { Row, type RowProps } from "../Row/Row";
 import type { SpendingReport } from "../../api/reportStore";
@@ -94,8 +94,13 @@ export const HistoryContainer = () => {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         {current ? (
           <div className={styles.modal_body}>
-            {toReportRows(current).map((row) => (
-              <Row text={row.text} value={row.value} variant={row.variant} />
+            {toReportRows(current).map((row, index) => (
+              <Row
+                text={row.text}
+                value={row.value}
+                variant={row.variant}
+                key={row.text + index}
+              />
             ))}
           </div>
         ) : (

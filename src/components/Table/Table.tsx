@@ -1,45 +1,56 @@
-import { useReportStore } from "../../api/reportStore";
-import { dayNumberToDateStringRU } from "../../services/report";
-import { Row } from "../Row/Row";
+import { useReportStore, type SpendingReport } from "../../api/reportStore";
+import { dayNumberToDateStringRU } from "../../utils/dayNumberToDateStringRU";
+import { Row, type RowProps } from "../Row/Row";
 
 import styles from "./Table.module.css";
+
+const toReportRows = (item: SpendingReport): RowProps[] => [
+  {
+    text: "общие расходы в галактических кредитах",
+    value: item.total_spend_galactic.toFixed(2),
+  },
+  {
+    text: "цивилизация с минимальными расходами",
+    value: item.less_spent_civ,
+  },
+  {
+    text: "количество обработанных записей",
+    value: item.rows_affected,
+  },
+  {
+    text: "день года с максимальными расходами",
+    value: dayNumberToDateStringRU(item.big_spent_at),
+  },
+  {
+    text: "день года с минимальными расходами",
+    value: dayNumberToDateStringRU(item.less_spent_at),
+  },
+  {
+    text: "максимальная сумма расходов за день",
+    value: item.big_spent_value,
+  },
+  {
+    text: "цивилизация с максимальными расходами",
+    value: item.big_spent_civ,
+  },
+  {
+    text: "средние расходы в галактических кредитах",
+    value: item.average_spend_galactic.toFixed(2),
+  },
+];
 
 export const Table = () => {
   const { report } = useReportStore();
   return (
     <div className={styles.wrapper}>
-      <Row
-        text="общие расходы в галактических кредитах"
-        value={report.total_spend_galactic.toFixed(2)}
-      />
-      <Row
-        text="цивилизация с минимальными расходами"
-        value={report.less_spent_civ}
-      />
-      <Row
-        text="количество обработанных записей"
-        value={report.rows_affected}
-      />
-      <Row
-        text="день года с максимальными расходами"
-        value={dayNumberToDateStringRU(report.big_spent_at)}
-      />
-      <Row
-        text="день года с минимальными расходами"
-        value={dayNumberToDateStringRU(report.less_spent_at)}
-      />
-      <Row
-        text="максимальная сумма расходов за день"
-        value={report.big_spent_value}
-      />
-      <Row
-        text="цивилизация с максимальными расходами"
-        value={report.big_spent_civ}
-      />
-      <Row
-        text="средние расходы в галактических кредитах"
-        value={report.average_spend_galactic.toFixed(2)}
-      />
+      {toReportRows(report).map((row, index) => (
+        <Row
+          text={row.text}
+          value={row.value}
+          variant={row.variant}
+          key={row.text + index}
+        />
+      ))}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import crossIcon from "../../../assets/icons/cross.svg";
 
 import styles from "./Modal.module.css";
 
@@ -20,7 +21,10 @@ export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
           e.stopPropagation();
         }}
       >
-        {children}
+        <div className={styles.body}>{children}</div>
+        <div className={styles.close_button} onClick={onClose}>
+          <img src={crossIcon} alt="" />
+        </div>
       </div>
     </div>,
     document.body

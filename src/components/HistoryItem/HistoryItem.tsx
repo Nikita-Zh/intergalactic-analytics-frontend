@@ -26,17 +26,17 @@ export const HistoryItem = ({ data, isDisabled, onClick, onDelete }: Props) => {
         </div>
         <div className={styles.item}>{data.date}</div>
         <div
-          className={`${styles.item} ${
+          className={`${styles.item} ${styles.status_cell} ${
             !data.isSuccess && styles.disabled_cell
           }`}
-          style={{ justifySelf: "flex-end" }}
         >
           <span>Обработан успешно</span>
           <img src={smileSvg}></img>
         </div>
         <div
-          className={`${styles.item} ${data.isSuccess && styles.disabled_cell}`}
-          style={{ justifySelf: "flex-end" }}
+          className={`${styles.item} ${styles.status_cell} ${
+            data.isSuccess && styles.disabled_cell
+          }`}
         >
           <span>Не удалось обработать</span>
           <img src={smileSadSvg}></img>

@@ -12,33 +12,28 @@
   font-size: 30px;
 }
 
-.label {
+.dropArea {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 60px 2.5rem;
   user-select: none;
-  /* cursor: pointer; */
   border-radius: 40px;
+  background: #eacdff;
+  border: 2px solid #eacdff;
   gap: 10px;
 }
 
-.upload_button {
-  background: #fff;
-  border-radius: 10px;
-  padding: 15px 27px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border: none;
-  font: inherit;
+.dropArea.error {
+  border: 2px solid #ff5f00;
+  background: transparent;
+}
+
+.dropArea.dragOver {
+  background: #d4fae6;
 }
 
 .submit_button {
   align-self: center;
 }
-
-/* .submit_button:disabled {
-  background-color: #c0c0c0;
-  cursor: not-allowed;
-} */

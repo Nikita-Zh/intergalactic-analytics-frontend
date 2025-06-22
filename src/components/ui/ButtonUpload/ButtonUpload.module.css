@@ -52,7 +52,7 @@
 }
 
 .delete_button {
-  background: #000;
+  background: #201b10;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;

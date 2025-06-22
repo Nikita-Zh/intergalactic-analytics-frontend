@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { HistoryContainer } from "../../components/HistoryContainer/HistoryContainer";
 import { Button } from "../../components/ui/Button/Button";
-
-import styles from "./HistoryPage.module.css";
 import { useReportListStore } from "../../api/reportListStore";
+import styles from "./HistoryPage.module.css";
 
 export const HistoryPage = () => {
   const { clearData } = useReportListStore();

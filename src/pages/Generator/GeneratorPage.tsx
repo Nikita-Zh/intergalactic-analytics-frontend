@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { reportApi } from "../../api/reportApi";
 import { Button } from "../../components/ui/Button/Button";
-import type { UploadStatus } from "../../components/ui/ButtonUpload/ButtonUpload";
-import styles from "./GeneratorPage.module.css";
 import { ButtonUpload } from "../../components/ui/ButtonUpload/ButtonUpload";
 import { downloadReport } from "../../services/report";
+import type { UploadStatus } from "../../components/ui/ButtonUpload/ButtonUpload";
+import styles from "./GeneratorPage.module.css";
 
 const statusMessage: Record<UploadStatus, { title: string; message: string }> =
   {

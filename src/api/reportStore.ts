@@ -16,6 +16,7 @@ type SpendingReportStore = {
     report: SpendingReport;
     isLoaded: boolean;
     setReport: (newReport: SpendingReport) => void;
+    resetIsLoaded: () => void;
 };
 
 export const useReportStore = create<SpendingReportStore>((set) => ({
@@ -39,4 +40,5 @@ export const useReportStore = create<SpendingReportStore>((set) => ({
             },
             isLoaded: true,
         })),
+    resetIsLoaded: () => set(() => ({ isLoaded: false })),
 }));

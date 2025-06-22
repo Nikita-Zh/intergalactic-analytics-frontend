@@ -6,23 +6,18 @@
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #cb81ff;
-  border-radius: 40px;
-  flex-grow: 1;
-  padding: 1.25rem;
-  cursor: pointer;
-
   display: grid;
   grid-template-columns:
-    minmax(220px, 1fr) /* первая колонка — filename + icon */
-    200px /* дата */
-    1fr /* статус success */
-    1fr /* статус fail */;
+    minmax(220px, 1fr)
+    200px
+    1fr
+    1fr;
   gap: 0.5rem;
   align-items: center;
+  cursor: pointer;
+  background: #cb81ff;
+  border-radius: 40px;
+  padding: 1.25rem;
 }
 
 .disabled {
@@ -46,7 +41,11 @@
 }
 
 .disabled_cell {
-  /* color: #8f64ae; */
   opacity: 0.4;
+}
+
+.status_cell {
+  justify-self: flex-end;
+  text-align: end;
 }
 
