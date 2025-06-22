@@ -1,0 +1,43 @@
+.nav {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo_section {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 700;
+  align-self: center;
+  background-color: #cb81ff;
+  padding: 5px 6px;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.links li {
+  padding: 13px 10px;
+}
+
+.link {
+  color: var(--text-color);
+  text-underline-offset: 12px;
+  text-decoration-line: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 4px;
+}
+
+.link_active {
+  border-bottom: 2px solid var(--text-color);
+}
