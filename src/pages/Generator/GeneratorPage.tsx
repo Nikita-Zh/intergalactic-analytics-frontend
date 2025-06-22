@@ -25,7 +25,7 @@ export const GeneratorPage = () => {
   const handleSubmit = async () => {
     try {
       setStatus("parsing");
-      await downloadReport(await reportApi.generateReport({ size: 0.001 }));
+      await downloadReport(await reportApi.generateReport({ size: 0.01 }));
       setStatus("parsed");
     } catch (error) {
       setStatus("error");

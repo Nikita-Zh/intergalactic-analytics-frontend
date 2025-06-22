@@ -3,11 +3,11 @@ const BASE_URL = "http://localhost:3000" as const;
 export const reportApi = {
   async generateReport(
     {
-      size,
+      size = 0.01,
       withErrors = "off",
       maxSpend = "1000",
     }: {
-      size: number;
+      size?: number;
       withErrors?: string;
       maxSpend?: string;
     },
@@ -30,7 +30,7 @@ export const reportApi = {
   async aggregateReport(file: File) {
     const data = new FormData();
     data.append("document", file);
-    const response = await fetch(`${BASE_URL}/aggregate?rows=${350}`, {
+    const response = await fetch(`${BASE_URL}/aggregate?rows=${500}`, {
       method: "post",
       body: data,
     });
