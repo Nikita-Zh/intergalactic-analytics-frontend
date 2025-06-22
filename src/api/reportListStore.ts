@@ -1,6 +1,14 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { SaveReportData } from "../services/report";
+import type { SpendingReport } from "./reportStore";
+
+export type SaveReportData = {
+    id: string;
+    report: SpendingReport | null;
+    fileName: string;
+    isSuccess: boolean;
+    date: string;
+};
 
 type ReportListStore = {
     dataList: SaveReportData[];

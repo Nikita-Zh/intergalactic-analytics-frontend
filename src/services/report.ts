@@ -1,13 +1,5 @@
 import { type SpendingReport } from "../api/reportStore";
 
-export type SaveReportData = {
-  id: string;
-  report: SpendingReport | null;
-  fileName: string;
-  isSuccess: boolean;
-  date: string;
-};
-
 export const decodeAggregateStream = async (
   response: Response,
   onData?: (data: SpendingReport) => void,

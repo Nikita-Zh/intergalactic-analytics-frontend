@@ -2,7 +2,7 @@ import fileSvg from "../../assets/icons/file.svg";
 import smileSvg from "../../assets/icons/smile.svg";
 import smileSadSvg from "../../assets/icons/smile-sad.svg";
 import trashSvg from "../../assets/icons/trash.svg";
-import type { SaveReportData } from "../../services/report";
+import type { SaveReportData } from "../../api/reportListStore";
 
 import styles from "./HistoryItem.module.css";
 

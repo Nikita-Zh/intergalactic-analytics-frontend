@@ -13,10 +13,8 @@ import {
 } from "../ui/ButtonUpload/ButtonUpload";
 import { Button } from "../ui/Button/Button";
 import { reportApi } from "../../api/reportApi";
-import {
-  decodeAggregateStream,
-  type SaveReportData,
-} from "../../services/report";
+import { decodeAggregateStream } from "../../services/report";
+import { type SaveReportData } from "../../api/reportListStore";
 import { getDateNowFormat } from "../../utils/getDateNowFormat";
 import { useReportStore } from "../../api/reportStore";
 import { useReportListStore } from "../../api/reportListStore";
